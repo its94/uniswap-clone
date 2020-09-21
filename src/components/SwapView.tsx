@@ -1,5 +1,17 @@
+
 import React, { useState } from 'react'
-import NumericInput from "react-numeric-input"
+
+// import * as CurrencyInput from 'react-currency-input';
+
+
+
+import { isValidNumber } from 'utils/Utils'
+import CurrencyInput from 'components/CurrencyInput'
+
+// const CurrencyInput = require('react-currency-input');
+
+
+
 
 // This is the whole curved square box for trading on Uniswap
 // View Toggle at the top: Swap, Send, Pool
@@ -65,7 +77,7 @@ const SwapView = () => {
         <div style={outerBoxStyle}>
             <TokenField
                 fieldPosition={'From'}
-                initialValue={0.0}
+                initialValue={1.3}
             />
 
             <button
@@ -94,8 +106,8 @@ type TokenFieldProps = {
     initialValue: number
 }
 
-const TokenField = ({ fieldPosition }: TokenFieldProps) => {
-    const [value, setValue] = useState(0.0)
+const TokenField = ({ fieldPosition, initialValue }: TokenFieldProps) => {
+    const [tokenAmount, setTokenAmount] = useState(initialValue)
 
 
     const TokenFieldStyle = {
@@ -122,25 +134,38 @@ const TokenField = ({ fieldPosition }: TokenFieldProps) => {
         <option value="DAI">DAI</option>,
     ]
 
+    const tokenAmountChanged = (e: any) => {
+        // formatTokenAmountNum(e.target.value)
+        console.log("From swapview", e.target.value);
+
+        if(isValidNumber(e.target.value)){
+            setTokenAmount(parseFloat(e.target.value))
+        } else {
+            console.log("else: ", e.target.value, isValidNumber(e.target.value));
+        }
+        // setTokenAmount(formatTokenAmountNum(e.target.value))
+        // setTokenAmount(e.target.value)
+    }
+
+    const updateValue = (value: string | undefined) => {
+        console.log(value);
+    }
+
     return (
         <div style={TokenFieldStyle}>
             <p style={InputLabelStyle}>{fieldPosition}</p>
-            <input
+            {/* <input
                 style={InputStyle}
                 type="text"
-                placeholder='0.0' />
-
-            <NumericInput
-                className="form-control"
-                // value={0}
-                min={0}
-                precision={6}
-                size={5}
-                strict
-                noStyle
-                // style={}
+                value={tokenAmount}
                 placeholder='0.0'
-            />
+                onChange={e => tokenAmountChanged(e)}
+                /> */}
+
+                <CurrencyInput value={0.0} updateValue={updateValue}/>
+
+
+            {/* <JsCurrencyInput value={tokenAmount} onChangeEvent={tokenAmountChanged}/> */}
 
             <select name="token" id="">
                 {dropdownOptions}
