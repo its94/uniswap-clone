@@ -20,32 +20,25 @@ const CurrencyInput: React.FC<Props> = ({value: valueFromProp, updateValue}) => 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { target: { value } } = event
 
-        console.log("here", value);
-
         if (value === "" || value === ".") {
             setCurrentValue("0")
             return updateValue("0")
         }
 
         const rejectCriteria = (
-            value.length > 22 ||
+            value.length > 22 || 
             value.replace(/[^\.]/g, "").length > 1 ||
             /[^0-9\.]/.test(value) ||
             countDecimals(value) > 18
         )
 
-        console.log("here2", value);
-
         // No changes to input if:
         if (rejectCriteria) {
-            console.log("rejected");
-            // only first 12 chars
             return currentValue
         }
 
         // const valueAsNumber = parseFloat(numeralCharsOnly(value))
         const valueAsNumber = parseFloat(value)
-        console.log(valueAsNumber);
 
         setCurrentValue(value)
         return updateValue(value)
