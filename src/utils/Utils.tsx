@@ -6,11 +6,4 @@ export const isValidNumber = (str: string) => {
     const validated = str.match(regex)
 
     return validated
-
-    // console.log("from fn", str);
-    
-
-    // console.log("match", validated);
-
-    // if(validated) return 
 }
