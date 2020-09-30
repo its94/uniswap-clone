@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import CurrencyInput from 'components/CurrencyInput'
 
 interface SwapPairSideProps {
-
+    data: SwapPairSideData;
+    handleValueChanged: InputChangeFunction;
 }
 
-export const SwapPairSide: React.FC<SwapPairSideProps> = ({ }) => {
+export const SwapPairSide: React.FC<SwapPairSideProps> = ({ data, handleValueChanged}) => {
     const [tokenAmount, setTokenAmount] = useState<number>(0)
 
 

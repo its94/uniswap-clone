@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 
 interface SwapViewMainBtnProps {
-
+    btnLabel: string;
+    handleClick: ClickFunction;
 }
 
-export const SwapViewMainBtn: React.FC<SwapViewMainBtnProps> = ({}) => {
+export const SwapViewMainBtn: React.FC<SwapViewMainBtnProps> = ({ btnLabel, handleClick }) => {
 
 
-        return (
-            <button style={style}>Connect Wallet</button>
-        );
+
+    return (
+        <button
+            style={style}
+            onClick={handleClick}
+            >
+            {btnLabel}
+        </button>
+    );
 }
 
 const style = {
