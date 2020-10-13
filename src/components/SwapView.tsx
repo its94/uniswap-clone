@@ -40,7 +40,7 @@ export const SwapView: React.FC<SwapViewProps> = ({}) => {
 
     return (
         <div style={outerBoxStyle}>
-            <SwapPairSide value={pairTop} handleValueChanged={handlePairSideInputChanged} />
+            <SwapPairSide data={pairTop} handleValueChanged={handlePairSideInputChanged} />
 
 
             <button
@@ -49,7 +49,7 @@ export const SwapView: React.FC<SwapViewProps> = ({}) => {
                 🔄
             </button>
 
-            <SwapPairSide value={pairTop} handleValueChanged={handlePairSideInputChanged} />
+            <SwapPairSide data={pairTop} handleValueChanged={handlePairSideInputChanged} />
 
             <SwapViewMainBtn btnLabel={btnLabel} handleClick={handleMainBtnClick} />
 
